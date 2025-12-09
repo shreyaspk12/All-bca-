@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000; /* Black Background */
+    color: white;
+    background-image: url("https://i.ibb.co/vxD6CqN/football-texture.jpg"); /* Football Pattern */
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: repeat;
+}
+
+/* Add clay-like dark overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* dark overlay */
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: rgba(20,20,20,0.85);
+    color: white;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(3px);
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Home */
+.home {
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+    background: rgba(0,0,0,0.3);
+    border-bottom: 2px solid #444;
+}
+
+/* Sections */
+.section {
+    padding: 50px 20px;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+/* Project Cards */
+.project-card {
+    background: rgba(15,15,15,0.85);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    box-shadow: 0 3px 6px rgba(255,255,255,0.05);
+    color: white;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.skills-grid p {
+    background: #222;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #444;
+}
+
+/* Contact links */
+.contact a {
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+/* Footer */
+footer {
+    background: rgba(20,20,20,0.85);
+    padding: 15px;
+    color: white;
+    text-align: center;
+    border-top: 1px solid #333;
+}
