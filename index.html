@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Shreya Koli — Creative Portfolio</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f1020;
+    --card:#ffffff;
+    --muted:rgba(255,255,255,0.8);
+    --accent1:#ff6ec7;
+    --accent2:#7c5cff;
+    --accent3:#3be6b5;
+    --glass: rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: "Poppins", "Nunito", system-ui, -apple-system, "Segoe UI", Roboto;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.15), transparent),
+                radial-gradient(1000px 500px at 90% 90%, rgba(59,230,181,0.06), transparent),
+                var(--bg);
+    color:var(--muted);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.4;
+  }
+
+  /* layout */
+  .wrap{
+    max-width:1200px;
+    margin:40px auto;
+    padding:28px;
+    display:grid;
+    grid-template-columns: 360px 1fr;
+    gap:28px;
+  }
+
+  /* left column (profile) */
+  .panel{
+    border-radius:20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    padding:26px;
+    position:relative;
+    overflow:hidden;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    backdrop-filter: blur(6px) saturate(120%);
+    border:1px solid rgba(255,255,255,0.04);
+  }
+
+  /* playful blobs */
+  .panel::before, .panel::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    filter:blur(40px);
+    opacity:0.6;
+    transform:translateZ(0);
+  }
+  .panel::before{
+    width:220px;height:220px;
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    top:-60px;left:-40px;
+  }
+  .panel::after{
+    width:160px;height:160px;
+    background:linear-gradient(135deg,var(--accent3),rgba(59,230,181,0.2));
+    bottom:-50px;right:-30px;
+  }
+
+  .photo {
+    width:120px;height:120px;border-radius:24px;
+    background:linear-gradient(135deg,var(--accent2),var(--accent1));
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:16px; box-shadow: 0 10px 30px rgba(124,92,255,0.12);
+    border:4px solid rgba(255,255,255,0.04);
+  }
+  /* placeholder svg avatar */
+  .avatar svg{width:84px;height:84px;filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));}
+
+  h1{
+    margin:0;
+    font-size:22px;
+    color:white;
+    letter-spacing:0.2px;
+  }
+  .role{color:rgba(255,255,255,0.85);font-weight:600;margin-top:6px;font-size:13px}
+  .meta{margin-top:12px;font-size:13px;color:rgba(255,255,255,0.75)}
+  .cta{
+    margin-top:18px;
+    display:flex;gap:10px;flex-wrap:wrap;
+  }
+  .btn{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:white;padding:8px 14px;border-radius:12px;text-decoration:none;font-weight:700;
+    box-shadow:0 8px 20px rgba(124,92,255,0.12);
+    display:inline-flex;align-items:center;gap:8px;border:0;
+  }
+  .btn.ghost{
+    background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600;
+    padding:8px 12px;
+  }
+
+  /* social icons */
+  .socials{display:flex;gap:10px;margin-top:14px}
+  .socials a{
+    width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);
+    display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--muted);
+    border:1px solid rgba(255,255,255,0.02)
+  }
+
+  .info-block{margin-top:20px;font-size:14px}
+  .info-block strong{color:white;display:block;margin-bottom:6px}
+
+  /* right column (content) */
+  .content{
+    display:flex;flex-direction:column;gap:24px;
+  }
+  .hero{
+    border-radius:20px;padding:26px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);position:relative;overflow:hidden;
+  }
+  .hero h2{margin:0;color:white;font-size:26px}
+  .hero p{margin-top:10px;color:rgba(255,255,255,0.8);font-size:15px;max-width:75%}
+
+  /* shimmering headline */
+  .headline{
+    display:inline-block;
+    background:linear-gradient(90deg,#fff,#ffd9fb, #fff);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:glow 3.5s ease-in-out infinite;
+  }
+  @keyframes glow{
+    0%{filter:brightness(1)}
+    50%{filter:brightness(1.5)}
+    100%{filter:brightness(1)}
+  }
+
+  /* projects grid */
+  .projects{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+  }
+  .card{
+    border-radius:16px;padding:18px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);position:relative;overflow:hidden;
+    transition:transform .35s cubic-bezier(.2,.9,.3,1), box-shadow .35s;
+  }
+  .card:hover{transform:translateY(-10px);box-shadow:0 18px 50px rgba(2,6,23,0.6)}
+  .card .tag{
+    display:inline-block;padding:6px 10px;border-radius:10px;font-weight:700;font-size:12px;background:linear-gradient(90deg,var(--accent3),rgba(59,230,181,0.12));color:#012;
+  }
+  .card h3{color:white;margin:10px 0 8px;font-size:18px}
+  .card p{margin:0;color:rgba(255,255,255,0.7);font-size:14px}
+
+  /* skills */
+  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .skill{
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+    padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+  }
+  .skill .label{display:flex;justify-content:space-between;font-weight:700;color:white;margin-bottom:8px;font-size:13px}
+  .bar{
+    height:10px;background:rgba(255,255,255,0.06);border-radius:8px;overflow:hidden;
+  }
+  .bar > i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--accent2),var(--accent1));border-radius:8px;transition:width 1.6s cubic-bezier(.2,.9,.3,1)}
+  .skill small{display:block;margin-top:8px;color:rgba(255,255,255,0.6)}
+
+  /* contact form */
+  .contact{
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  }
+  .contact input, .contact textarea{
+    width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+    background:transparent;color:var(--muted);
+  }
+  .contact textarea{min-height:120px;resize:vertical}
+  .contact .send{grid-column:2;justify-self:end;padding:10px 16px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;font-weight:800}
+
+  footer{margin-top:12px;text-align:center;color:rgba(255,255,255,0.5);font-size:13px}
+
+  /* responsive */
+  @media (max-width:980px){
+    .wrap{grid-template-columns:1fr; padding:18px}
+    .projects{grid-template-columns:repeat(1,1fr)}
+    .skills-grid{grid-template-columns:repeat(1,1fr)}
+    .contact{grid-template-columns:1fr}
+    .contact .send{grid-column:1}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- LEFT: PROFILE -->
+  <aside class="panel" aria-label="profile card">
+    <div class="photo avatar" title="Shreya Koli">
+      <!-- Inline SVG avatar placeholder (replace with <img src="your-photo.jpg">) -->
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="avatar">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0" stop-color="#7c5cff"/>
+            <stop offset="1" stop-color="#ff6ec7"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="120" height="120" rx="18" fill="url(#g1)"/>
+        <g transform="translate(20,18)" fill="#fff">
+          <circle cx="40" cy="30" r="18" opacity="0.95"/>
+          <rect x="8" y="62" rx="8" width="64" height="28" opacity="0.95"/>
+        </g>
+      </svg>
+    </div>
+
+    <h1>Shreya Koli</h1>
+    <div class="role">Software Developer • Full-Stack • Problem Solver</div>
+
+    <div class="meta">Pune, Maharashtra &nbsp; • &nbsp; <a href="mailto:kolishreya2004@gmail.com" style="color:inherit;text-decoration:underline">kolishreya2004@gmail.com</a></div>
+
+    <div class="cta">
+      <a class="btn" href="#projects">Explore Projects</a>
+      <!-- Replace 'resume.pdf' with your hosted resume file -->
+      <a class="btn" href="SHREYA_KOLI_Resume.pdf" download title="Download Resume">Download Resume</a>
+      <a class="btn ghost" href="#contact">Contact</a>
+    </div>
+
+    <div class="socials" aria-hidden="false" role="navigation" style="margin-top:18px">
+      <a href="https://www.linkedin.com/in/shreya-koli" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+        <!-- LinkedIn SVG -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8.8h4.58V24H.22V8.8zM9.89 8.8h4.39v2.08h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 6.99V24h-4.63v-7.22c0-1.72 0-3.94-2.4-3.94-2.41 0-2.78 1.88-2.78 3.8V24H9.89V8.8z" fill="currentColor"/></svg>
+      </a>
+
+      <a href="https://github.com/" target="_blank" title="GitHub" aria-label="GitHub">
+        <!-- GitHub SVG -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.92.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.11-.75.4-1.25.72-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.18-3.1-.12-.28-.51-1.42.11-2.97 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.73 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.55.23 2.69.11 2.97.74.81 1.18 1.84 1.18 3.1 0 4.43-2.71 5.41-5.29 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.21 0 .3.2.66.79.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z" fill="currentColor"/></svg>
+      </a>
+
+      <a href="#" title="LeetCode / Profile" aria-label="LeetCode">
+        <!-- generic code icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M7 8l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 16l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="info-block" style="margin-top:18px">
+      <strong>Contact</strong>
+      <div>Phone: +91 8788665308</div>
+      <div style="margin-top:8px"><strong>Education</strong>
+        <div style="font-size:13px;margin-top:6px;color:rgba(255,255,255,0.7)">
+          B.C.A (Science) — Vidya Prathishthan's Arts Science and Commerce, Baramati (2022–2025) • CGPA: 8.27
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block" style="margin-top:16px;font-size:13px">
+      <strong>Certifications</strong>
+      <div style="margin-top:8px;color:rgba(255,255,255,0.75)">
+        Java Programming • Responsive Web Design (freeCodeCamp) • Python for Data Science (Coursera)
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- RIGHT: MAIN CONTENT -->
+  <main class="content" aria-live="polite">
+    <section class="hero card">
+      <h2 class="headline">Hi — I'm <span style="color:transparent;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text">Shreya</span> — Creative Developer</h2>
+      <p>I build beautiful & usable web apps, solve algorithmic challenges, and love creating delightful user experiences. Below are some featured projects, skills, and ways to contact me. (Content prefilled from your resume). :contentReference[oaicite:1]{index=1}</p>
+    </section>
+
+    <!-- Projects -->
+    <section class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 style="margin:0;color:white">Featured Projects</h3>
+        <div style="font-size:13px;color:rgba(255,255,255,0.6)">Click to view</div>
+      </div>
+
+      <div class="projects" style="margin-top:16px">
+        <article class="card" onclick="openProject(event,'#proj1')" role="link" tabindex="0">
+          <div class="tag">Web • Frontend</div>
+          <h3>Amazon Clone</h3>
+          <p>Responsive UI built with HTML & CSS. Search, filters & product grid (Jan 2022)</p>
+          <div style="margin-top:12px"><a class="btn ghost" href="#" onclick="event.stopPropagation();openProject(event,'#proj1')">View</a></div>
+        </article>
+
+        <article class="card" onclick="openProject(event,'#proj2')" tabindex="0">
+          <div class="tag">ML • Python</div>
+          <h3>Phishing Website Detection</h3>
+          <p>ML model using URL features with Decision Tree — achieved 95% accuracy (Jan 2024)</p>
+          <div style="margin-top:12px"><a class="btn ghost" href="#" onclick="event.stopPropagation();openProject(event,'#proj2')">View</a></div>
+        </article>
+
+        <article class="card" onclick="openProject(event,'#proj3')" tabindex="0">
+          <div class="tag">Mobile • Java</div>
+          <h3>MessAdda — Hostel Food App</h3>
+          <p>Food management app to view daily menu & feedback, real-time updates (Feb 2025)</p>
+          <div style="margin-top:12px"><a class="btn ghost" href="#" onclick="event.stopPropagation();openProject(event,'#proj3')">View</a></div>
+        </article>
+
+        <article class="card" onclick="openProject(event,'#proj4')" tabindex="0">
+          <div class="tag">Full-Stack</div>
+          <h3>Fake Logo Detection</h3>
+          <p>AI project for counterfeit logo detection using Python. (Repo & demo available)</p>
+          <div style="margin-top:12px"><a class="btn ghost" href="#" onclick="event.stopPropagation();openProject(event,'#proj4')">View</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 style="margin:0;color:white">Skills & Tools</h3>
+        <div style="font-size:13px;color:rgba(255,255,255,0.6)">Level: Pro → Beginner</div>
+      </div>
+
+      <div class="skills-grid" style="margin-top:14px">
+        <div class="skill">
+          <div class="label"><span>HTML / CSS</span><span>95%</span></div>
+          <div class="bar"><i data-percent="95"></i></div>
+          <small>Responsive UI, Flexbox, Grid, Animations</small>
+        </div>
+
+        <div class="skill">
+          <div class="label"><span>JavaScript / React</span><span>85%</span></div>
+          <div class="bar"><i data-percent="85"></i></div>
+          <small>Interactive UI, React components</small>
+        </div>
+
+        <div class="skill">
+          <div class="label"><span>Java / Android</span><span>75%</span></div>
+          <div class="bar"><i data-percent="75"></i></div>
+          <small>App logic, layouts, local DB</small>
+        </div>
+
+        <div class="skill">
+          <div class="label"><span>Python / ML</span><span>78%</span></div>
+          <div class="bar"><i data-percent="78"></i></div>
+          <small>Data processing, model building</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="card">
+      <h3 style="margin-top:0;color:white">Get in touch</h3>
+      <p style="color:rgba(255,255,255,0.75);margin-top:6px">Want to collaborate or hire me? Send a message — I reply quickly.</p>
+
+      <form id="contactForm" class="contact" onsubmit="sendMail(event)">
+        <input type="text" id="name" placeholder="Your name" required />
+        <input type="email" id="email" placeholder="Your email" required />
+        <textarea id="message" placeholder="Your message..." required></textarea>
+        <button type="submit" class="send">Send Message</button>
+      </form>
+
+      <footer style="margin-top:14px">Or email me directly: <a href="mailto:kolishreya2004@gmail.com">kolishreya2004@gmail.com</a></footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // animate skill bars when in view
+  function animateSkills(){
+    document.querySelectorAll('.bar > i').forEach((el)=>{
+      const pct = el.getAttribute('data-percent') || 0;
+      // small stagger
+      setTimeout(()=> el.style.width = pct + '%', 200);
+    });
+  }
+  // run on load
+  window.addEventListener('load', animateSkills);
+
+  // project quick view (simple modal)
+  function openProject(e, id){
+    e.preventDefault();
+    const data = {
+      '#proj1': {title:'Amazon Clone', text:'A responsive frontend for e-commerce UI built with HTML, CSS & JS. Features: product grid, search and filter.'},
+      '#proj2': {title:'Phishing Website Detection', text:'ML model built in Python/Flask that extracts URL features and classifies phishing sites (Decision Tree, 95% acc).'},
+      '#proj3': {title:'MessAdda', text:'Hostel food management app: menus, feedback and real-time updates.'},
+      '#proj4': {title:'Fake Logo Detection', text:'A project using ML to detect counterfeit logos; approach: image features + classifier/dnn model.'}
+    };
+    const item = data[id] || {title:'Project', text:'Details coming soon.'};
+    const modal = document.createElement('div');
+    modal.style.position='fixed';modal.style.inset=0;modal.style.background='rgba(2,6,23,0.7)';modal.style.display='flex';
+    modal.style.alignItems='center';modal.style.justifyContent='center';modal.style.zIndex=9999;
+    modal.innerHTML = `<div style="max-width:720px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:22px;color:var(--muted);border:1px solid rgba(255,255,255,0.04)">
+        <h2 style="color:white;margin-top:0">${item.title}</h2><p style="color:rgba(255,255,255,0.85)">${item.text}</p>
+        <div style="margin-top:14px;display:flex;gap:8px;justify-content:flex-end">
+          <a href="#" style="padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);text-decoration:none" onclick="this.closest('div[style]').remove();return false">Close</a>
+        </div></div>`;
+    document.body.appendChild(modal);
+    // close on click outside
+    modal.addEventListener('click',(ev)=>{ if(ev.target===modal) modal.remove(); });
+  }
+
+  // simple contact handler - opens mail client as fallback
+  function sendMail(event){
+    event.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if(!name||!email||!message){ alert('Please fill all fields'); return; }
+
+    // mailto fallback
+    const subject = encodeURIComponent(`Portfolio message from ${name}`);
+    const body = encodeURIComponent(`${message}\n\n---\nFrom: ${name}\nEmail: ${email}`);
+    window.location.href = `mailto:kolishreya2004@gmail.com?subject=${subject}&body=${body}`;
+  }
+</script>
+
+</body>
+</html>
